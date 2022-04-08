@@ -114,7 +114,7 @@ def vis1():
    ax.fig.set_figwidth(6)
    ax.fig.set_figheight(4)
    
-vis1()
+# vis1()
 
 
 # ### Relationship of Freedom with Intensity of Deprivation
@@ -132,7 +132,7 @@ def vis2():
     plt.xticks([0,1,2],y_axis_labels)
     ax.fig.set_figwidth(6)
     ax.fig.set_figheight(4)
-vis2()
+# vis2()
 
 
 # ### Poverty in Countries Based On Their Freedom State
@@ -150,7 +150,7 @@ def vis3():
     plt.xticks([0,1,2],y_axis_labels)
     ax.fig.set_figwidth(6)
     ax.fig.set_figheight(4)
-vis3()
+# vis3()
 
 
 # ## Conclusion
