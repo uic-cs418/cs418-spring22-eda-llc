@@ -130,7 +130,7 @@ def plotPredictions(X_pred, y_pred):
     fig = px.choropleth(locations=X_pred,
      locationmode="country names",
     color=y_pred,
-     title="Wide-Form Input, relabelled",
+     title="Classification of Freedom State of Countries/Territories using SVM",
     labels={"color": "Election Type"}
      )
     fig.show()
