@@ -27,73 +27,74 @@ init_notebook_mode(connected=True)
 # In[24]:
 
 
-df = pd.read_excel('All_data_FIW_2013-2022.xlsx', sheet_name = 1, header=1)
 
-
-# In[25]:
-
-
-df.head()
-
-
-# In[62]:
-
-
-X = df.iloc[:, 7:-1]
-X['Country/Territory'] = df['Country/Territory']
-X = X.drop(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'CL', 'PR', 'Add Q', 'Add A'], axis=1)
-X = X.to_numpy()
-X
-
-
-# In[65]:
-
-
-y = df.iloc[:,4]
-y
-
-
-# In[84]:
-
-
-X_train, X_test, y_train, y_test = train_test_split(X,y,  random_state = 1)
-X_train = pd.DataFrame(X_train)
-X_test = pd.DataFrame(X_test)
-
-X_pred = X_test.iloc[: , -1]
-
-
-X_test = X_test.iloc[:, 0:-1]
-X_train = X_train.iloc[:, 0:-1]
-# X_train = X_train.drop(['Country/Territory'], axis=1)
-
-X_test = X_test.to_numpy()
-X_train = X_train.to_numpy()
-
-
-# In[85]:
-
-
-X_test
-
-
-# In[86]:
-
-
-y_test
-
-
-# In[87]:
-
-
-X_train = pd.DataFrame(X_train)
-# X_train = pd.DataFrame(X_train).iloc[:, 0:-1]
-X_train
 
 
 # In[88]:
 
 def predict_Baseline_SVM():
+    df = pd.read_excel('All_data_FIW_2013-2022.xlsx', sheet_name = 1, header=1)
+
+
+# In[25]:
+
+
+    df.head()
+
+
+    # In[62]:
+
+
+    X = df.iloc[:, 7:-1]
+    X['Country/Territory'] = df['Country/Territory']
+    X = X.drop(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'CL', 'PR', 'Add Q', 'Add A'], axis=1)
+    X = X.to_numpy()
+#     X
+
+
+    # In[65]:
+
+
+    y = df.iloc[:,4]
+#     y
+
+
+    # In[84]:
+
+
+    X_train, X_test, y_train, y_test = train_test_split(X,y,  random_state = 1)
+    X_train = pd.DataFrame(X_train)
+    X_test = pd.DataFrame(X_test)
+
+    X_pred = X_test.iloc[: , -1]
+
+
+    X_test = X_test.iloc[:, 0:-1]
+    X_train = X_train.iloc[:, 0:-1]
+    # X_train = X_train.drop(['Country/Territory'], axis=1)
+
+    X_test = X_test.to_numpy()
+    X_train = X_train.to_numpy()
+
+
+    # In[85]:
+
+
+#     X_test
+
+
+    # In[86]:
+
+
+#     y_test
+
+
+    # In[87]:
+
+
+    X_train = pd.DataFrame(X_train)
+    # X_train = pd.DataFrame(X_train).iloc[:, 0:-1]
+#     X_train
     dummy = DummyClassifier()
     dummy.fit(X_train, y_train)
     y_pred = dummy.predict(X_test)
@@ -109,18 +110,18 @@ def predict_Baseline_SVM():
 # In[89]:
 
 
-y_pred
+# y_pred
 
 
 # In[90]:
 
 
-learner = KNeighborsClassifier()
+    learner = KNeighborsClassifier()
 
-learner.fit(X_train, y_train)
-y_pred = learner.predict(X_test)
+    learner.fit(X_train, y_train)
+    y_pred = learner.predict(X_test)
 
-print("KNN Accuracy:",metrics.accuracy_score(y_test, y_pred))
+    print("KNN Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
 
 # In[93]:
