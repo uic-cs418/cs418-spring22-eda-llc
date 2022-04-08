@@ -127,14 +127,14 @@ def predict_Baseline_SVM():
 # In[93]:
 
 
-# def plotPredictions(X_pred, y_pred):
-#     fig = px.choropleth(locations=X_pred,
-#      locationmode="country names",
-#     color=y_pred,
-#      title="Classification of Freedom State of Countries/Territories using SVM",
-#     labels={"color": "Election Type"}
-#      )
-#     fig.show()
+def plotPredictions(X_pred, y_pred):
+    fig = px.choropleth(locations=X_pred,
+     locationmode="country names",
+    color=y_pred,
+     title="Classification of Freedom State of Countries/Territories using SVM",
+    labels={"color": "Election Type"}
+     )
+    fig.show()
     
-# plotPredictions(X_pred, y_pred)
+plotPredictions(X_pred, y_pred)
 
