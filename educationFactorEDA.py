@@ -21,7 +21,6 @@ import seaborn as sns;
 
 # In[264]:
 
-
 edu = pd.read_excel("Literacy-rate_2021-1.xlsx", sheet_name = 2, nrows = 203, header = 0)
 # Cleaning the data by dropping some columns
 edu = edu.drop(columns = ['Gender','Source'])
@@ -43,23 +42,23 @@ edu.head()
 
 # In[278]:
 
+def plotEduEDA() :
+    print(edu['Development Regions'].value_counts())
 
-print(edu['Development Regions'].value_counts())
+    edu_grp = edu.groupby(['Region_UNICEF','Development Regions']).agg(number_of_countries = ('Country/Territory','count'))
+    edu_grp = edu_grp.reset_index()
 
-edu_grp = edu.groupby(['Region_UNICEF','Development Regions']).agg(number_of_countries = ('Country/Territory','count'))
-edu_grp = edu_grp.reset_index()
+    region_label = ['East Asia and the Pacific', 'Europe and Central Asia', 'Latin America and the Caribbean', 
+                    'Middle East and North Africa', 'South Asia', 'Sub-Saharan Africa']
 
-region_label = ['East Asia and the Pacific', 'Europe and Central Asia', 'Latin America and the Caribbean', 
-                'Middle East and North Africa', 'South Asia', 'Sub-Saharan Africa']
+    fig, ax1 = plt.subplots(figsize=(8,6))
 
-fig, ax1 = plt.subplots(figsize=(8,6))
+    edu_grp2 = edu.groupby(['Region_UNICEF']).agg(literacy_rate = ('Total_LiteracyRate','mean'))
+    sns.lineplot(data = edu_grp2['literacy_rate'], marker='o', sort = False, ax=ax1)
+    ax2 = ax1.twinx()
 
-edu_grp2 = edu.groupby(['Region_UNICEF']).agg(literacy_rate = ('Total_LiteracyRate','mean'))
-sns.lineplot(data = edu_grp2['literacy_rate'], marker='o', sort = False, ax=ax1)
-ax2 = ax1.twinx()
-
-ax2 = sns.barplot(data=edu_grp, x='Region_UNICEF', y='number_of_countries', hue = 'Development Regions', alpha=0.5, ax=ax2)
-ax2 = ax2.set(title = "Relation Between Total # Of Countries and Literacy Rate for Each Region")
+    ax2 = sns.barplot(data=edu_grp, x='Region_UNICEF', y='number_of_countries', hue = 'Development Regions', alpha=0.5, ax=ax2)
+    ax2 = ax2.set(title = "Relation Between Total # Of Countries and Literacy Rate for Each Region")
 
 
 # ### Import and clean All Data FIW To Compare The Status of the Countries
@@ -104,13 +103,13 @@ allData_merged.head()
 
 # In[289]:
 
+def literacyEDA():
+    allData_grp = allData_merged.groupby(['Region','Status']).count()
+    allData_grp = allData_grp.reset_index()
 
-allData_grp = allData_merged.groupby(['Region','Status']).count()
-allData_grp = allData_grp.reset_index()
-
-ax = sns.barplot(data=allData_grp, x='Region', y='Total_LiteracyRate', hue='Status', palette='Set2')
-ax = ax.set(title = "Total Literacy Rate for Each Region")
-ax = sns.set(rc={'figure.figsize':(8,6)})
+    ax = sns.barplot(data=allData_grp, x='Region', y='Total_LiteracyRate', hue='Status', palette='Set2')
+    ax = ax.set(title = "Total Literacy Rate for Each Region")
+    ax = sns.set(rc={'figure.figsize':(8,6)})
 
 
 # From the barplot, we can see that there is a direct relationship between the literacy rate and status of the country for each region. A more number of free countries in the region has a higher literacy rate. 
@@ -122,13 +121,13 @@ ax = sns.set(rc={'figure.figsize':(8,6)})
 
 # In[290]:
 
+def regionPlot():
+    allData_grp2 = allData_merged.groupby(['Development Regions','Status']).agg(val = ('Country/Territory','count'))
+    allData_grp2 = allData_grp2.reset_index()
 
-allData_grp2 = allData_merged.groupby(['Development Regions','Status']).agg(val = ('Country/Territory','count'))
-allData_grp2 = allData_grp2.reset_index()
-
-ax = sns.barplot(data=allData_grp2, x='Development Regions', y='val', hue='Status')
-ax = ax.set(ylabel = "Total Number of Countries", title = "Number of Countries For Each Status based on Development Regions")
-ax = sns.set(rc={'figure.figsize':(8,6)})
+    ax = sns.barplot(data=allData_grp2, x='Development Regions', y='val', hue='Status')
+    ax = ax.set(ylabel = "Total Number of Countries", title = "Number of Countries For Each Status based on Development Regions")
+    ax = sns.set(rc={'figure.figsize':(8,6)})
 
 
 # More Developed Country, we see that the total number of free countries is more than the other status.
