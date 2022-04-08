@@ -93,17 +93,17 @@ X_train
 
 # In[88]:
 
+def predict_Baseline_SVM():
+    dummy = DummyClassifier()
+    dummy.fit(X_train, y_train)
+    y_pred = dummy.predict(X_test)
 
-dummy = DummyClassifier()
-dummy.fit(X_train, y_train)
-y_pred = dummy.predict(X_test)
+    print("Baseline Classifier Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
-print("Baseline Classifier Accuracy:",metrics.accuracy_score(y_test, y_pred))
-
-learner = SVC(kernel = 'linear',gamma='auto')
-learner.fit(X_train, y_train)
-y_pred = learner.predict(X_test)
-print("SVM Accuracy:",metrics.accuracy_score(y_test, y_pred))
+    learner = SVC(kernel = 'linear',gamma='auto')
+    learner.fit(X_train, y_train)
+    y_pred = learner.predict(X_test)
+    print("SVM Accuracy:",metrics.accuracy_score(y_test, y_pred))
 
 
 # In[89]:
@@ -126,14 +126,14 @@ print("KNN Accuracy:",metrics.accuracy_score(y_test, y_pred))
 # In[93]:
 
 
-def plotPredictions(X_pred, y_pred):
-    fig = px.choropleth(locations=X_pred,
-     locationmode="country names",
-    color=y_pred,
-     title="Classification of Freedom State of Countries/Territories using SVM",
-    labels={"color": "Election Type"}
-     )
-    fig.show()
+# def plotPredictions(X_pred, y_pred):
+#     fig = px.choropleth(locations=X_pred,
+#      locationmode="country names",
+#     color=y_pred,
+#      title="Classification of Freedom State of Countries/Territories using SVM",
+#     labels={"color": "Election Type"}
+#      )
+#     fig.show()
     
-plotPredictions(X_pred, y_pred)
+# plotPredictions(X_pred, y_pred)
 
