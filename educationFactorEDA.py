@@ -127,7 +127,7 @@ def regionPlot():
 
     ax = sns.barplot(data=allData_grp2, x='Development Regions', y='val', hue='Status')
     ax = ax.set(ylabel = "Total Number of Countries", title = "Number of Countries For Each Status based on Development Regions")
-    ax = sns.set(rc={'figure.figsize':(8,6)})
+    ax = sns.set(rc={'figure.figsize':(5,6)})
 
 
 # More Developed Country, we see that the total number of free countries is more than the other status.
