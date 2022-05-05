@@ -93,7 +93,9 @@ allData_merged = allData.merge(edu, how='left', on='Country/Territory')
 allData_merged = allData_merged.dropna()
 allData_merged.head()
 
-
+def display_allData():
+    return allData_merged.head(3);
+    
 # ### Relation of the Literacy Rate for Each Region
 
 # Plot a bargraph for the total number of countries in each region based on the status of the country.
