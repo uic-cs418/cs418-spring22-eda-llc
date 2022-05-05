@@ -94,7 +94,7 @@ allData_merged = allData_merged.dropna()
 allData_merged.head()
 
 def display_allData():
-    allData_merged.head(3);
+    return allData_merged.head(3);
     
 # ### Relation of the Literacy Rate for Each Region
 
