@@ -99,10 +99,10 @@ labels.head(5)
 # In[28]:
 
 
-def dataMerged():
+# def dataMerged():
     merged = pd.merge(df, labels[['Country', 'Status']], on =['Country'], how = 'left')
-    return merged.head(3)
-dataMerged()
+#     return merged.head(3)
+# dataMerged()
 
 
 # ## Visualizations for EDA
