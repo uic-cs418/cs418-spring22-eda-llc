@@ -6,13 +6,25 @@ from sklearn import svm
 from sklearn.model_selection import train_test_split
 import sklearn.metrics as metrics
 
+def readAggregateVis():
+    df = pd.read_excel('Aggregate_Category_and_Subcategory_Scores_FIW_2003-2022.xlsx', sheet_name = 1, header=0)
+    data = df.iloc[:, 0:19]
+    data = data.drop(['Edition','Add Q', 'Add A'], axis = 1)
+    avg = data.groupby(['Region']).mean()
+    totalDf = pd.DataFrame(avg.loc[:,'Total'])
+    return totalDf
 
 def aggregateVis():
     df = pd.read_excel('Aggregate_Category_and_Subcategory_Scores_FIW_2003-2022.xlsx', sheet_name = 1, header=0)
     data = df.iloc[:, 0:19]
     data = data.drop(['Edition','Add Q', 'Add A'], axis = 1)
     avg = data.groupby(['Region']).mean()
+    #totalTable = avg.loc[:,'Total']
+    #print(totalTable)
     ax = avg.plot.bar(y='Total', rot=0, title="Average Total Agreggrate Score by Region")
+    #avg.columns = ['Region','Total]
+    #return avg
+
     
 ###########################################
 
